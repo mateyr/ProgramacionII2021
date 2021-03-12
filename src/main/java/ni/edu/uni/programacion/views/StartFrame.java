@@ -7,7 +7,9 @@ package ni.edu.uni.programacion.views;
 
 import java.awt.BorderLayout;
 import ni.edu.uni.programacion.controllers.PnlCalculadoraController;
+import ni.edu.uni.programacion.controllers.PnlConvertidorMonedaController;
 import ni.edu.uni.programacion.views.panels.PnlCalculadora;
+import ni.edu.uni.programacion.views.panels.PnlConvertDin;
 
 /**
  *
@@ -16,6 +18,8 @@ import ni.edu.uni.programacion.views.panels.PnlCalculadora;
 public class StartFrame extends javax.swing.JFrame {
     private PnlCalculadora pnlCalculadora;
     private PnlCalculadoraController pnlCalculadoraController;
+    private PnlConvertDin pnlConvert;
+    private PnlConvertidorMonedaController pnlConvertController;
     /**
      * Creates new form StartFrame
      */
@@ -35,7 +39,7 @@ public class StartFrame extends javax.swing.JFrame {
 
         pnlLeftButtons = new javax.swing.JPanel();
         btnCalc = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnConvertM = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         pnlContent = new javax.swing.JPanel();
 
@@ -55,8 +59,13 @@ public class StartFrame extends javax.swing.JFrame {
         });
         pnlLeftButtons.add(btnCalc);
 
-        jButton2.setText("jButton2");
-        pnlLeftButtons.add(jButton2);
+        btnConvertM.setText("Convertidor");
+        btnConvertM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertMActionPerformed(evt);
+            }
+        });
+        pnlLeftButtons.add(btnConvertM);
 
         jButton3.setText("jButton3");
         pnlLeftButtons.add(jButton3);
@@ -82,6 +91,26 @@ public class StartFrame extends javax.swing.JFrame {
         pnlContent.add(pnlCalculadora, BorderLayout.CENTER);
         this.validate();
     }//GEN-LAST:event_btnCalcActionPerformed
+
+    private void btnConvertMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertMActionPerformed
+        
+        if(pnlConvert== null){
+            
+            pnlConvert = new PnlConvertDin();
+            
+            pnlConvertController = new PnlConvertidorMonedaController(pnlConvert);
+            
+        }
+        
+        if(pnlContent.getComponentCount() > 0){
+            pnlContent.remove(0);
+        }
+        pnlContent.add(pnlConvert, BorderLayout.CENTER);
+        this.validate();
+        
+       
+        
+    }//GEN-LAST:event_btnConvertMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,7 +149,7 @@ public class StartFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCalc;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnConvertM;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel pnlContent;
     private javax.swing.JPanel pnlLeftButtons;
