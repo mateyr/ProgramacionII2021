@@ -7,8 +7,10 @@ package ni.edu.uni.programacion.views;
 
 import java.awt.BorderLayout;
 import ni.edu.uni.programacion.controllers.PnlCalculadoraController;
+import ni.edu.uni.programacion.controllers.PnlConvertirTempController;
 import ni.edu.uni.programacion.controllers.PnlCurrencyConverterController;
 import ni.edu.uni.programacion.views.panels.PnlCalculadora;
+import ni.edu.uni.programacion.views.panels.PnlConversionesTemp;
 import ni.edu.uni.programacion.views.panels.PnlCurrencyConverter;
 
 
@@ -21,7 +23,8 @@ public class StartFrame extends javax.swing.JFrame {
     private PnlCalculadoraController pnlCalculadoraController;
     private PnlCurrencyConverter pnlCurrencyConverter;
     private PnlCurrencyConverterController pnlCurrencyConverterController;
-   
+    private PnlConversionesTemp  pnlconversionestemp;
+    private PnlConvertirTempController pnlconversionestempcontroller;
     /**
      * Creates new form StartFrame
      */
@@ -72,6 +75,11 @@ public class StartFrame extends javax.swing.JFrame {
 
         jButton3.setText("Convertido De Temperaturas");
         jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         pnlLeftButtons.add(jButton3);
 
         getContentPane().add(pnlLeftButtons, java.awt.BorderLayout.LINE_START);
@@ -111,6 +119,22 @@ public class StartFrame extends javax.swing.JFrame {
         pnlContent.add(pnlCurrencyConverter, BorderLayout.CENTER);
         this.validate();
     }//GEN-LAST:event_btnConvertMActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(pnlconversionestemp == null){
+            
+            pnlconversionestemp = new PnlConversionesTemp();
+            
+            pnlconversionestempcontroller = new PnlConvertirTempController(pnlconversionestemp);
+        }
+        
+        if(pnlContent.getComponentCount() > 0) {
+            pnlContent.remove(0);
+        }
+        
+        pnlContent.add(pnlconversionestemp, BorderLayout.CENTER);
+        this.validate();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -47,7 +47,7 @@ public class PnlConvertirTempController implements ActionListener {
                   
                   cant = Double.parseDouble(pnlconversionestemp.getTxttemperatura().getText());
                   
-                  pnlconversionestemp.getTxtResult().setText(String.valueOf(cant/35));
+                  pnlconversionestemp.getTxtResult().setText(String.valueOf((cant - 32) * ((float)5/9)));
                   
                   pnlconversionestemp.getTxttemperatura().setText("");
                 }
@@ -56,11 +56,11 @@ public class PnlConvertirTempController implements ActionListener {
             }
             case 2:{
                 if(e.getActionCommand().equalsIgnoreCase("Convertir")){
-                  float cant ;
+                  double cant ;
                   
-                  cant = (float) Double.parseDouble(pnlconversionestemp.getTxttemperatura().getText());
+                  cant = Double.parseDouble(pnlconversionestemp.getTxttemperatura().getText());
                   
-                  pnlconversionestemp.getTxtResult().setText(String.valueOf(32 + (cant*1.8);
+                  pnlconversionestemp.getTxtResult().setText(String.valueOf(1.8*cant + 32));
                 
                   pnlconversionestemp.getTxttemperatura().setText("");
                 }
