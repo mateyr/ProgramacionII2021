@@ -57,7 +57,7 @@
                         <Label text="First Name :" />
                         <Label fx:id="lblFirstName" prefHeight="18.0" prefWidth="205.0" GridPane.columnIndex="1" />
                         <Label text="Last Name :" GridPane.rowIndex="1" />
-                        <Label fx:id="lblLastName" prefHeight="18.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblLastName" prefHeight="18.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="Postal Code :" GridPane.rowIndex="4" />
                         <Label fx:id="lbPostalCode" prefHeight="18.0" prefWidth="206.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <Label text="Address :" GridPane.rowIndex="2" />
@@ -71,8 +71,8 @@
                   <ButtonBar layoutX="12.0" layoutY="344.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="397.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0">
                     <buttons>
                       <Button fx:id="btnNew" mnemonicParsing="false" onAction="#btnNewAction" text="New" />
-                        <Button mnemonicParsing="false" text="Edit" />
-                        <Button mnemonicParsing="false" text="Delete" />
+                        <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#btnEditAction" text="Edit" />
+                        <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDeleteAction" text="Delete" />
                     </buttons>
                   </ButtonBar>
                </children>

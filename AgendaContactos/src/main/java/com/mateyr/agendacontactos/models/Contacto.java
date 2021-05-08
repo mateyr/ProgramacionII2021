@@ -61,14 +61,11 @@ public class Contacto {
         this.lastName = lastName;
     }
 
-    public StringProperty getStreet() {
-        return street;
-    }
+   
     
-    /*public String getStreet(){
+    public String getStreet(){
         return street.get();
-    }*/
-    
+    }
     
 
     public void setStreet(StringProperty street) {
@@ -86,6 +83,9 @@ public class Contacto {
     public StringProperty getCity() {
         return city;
     }
+    
+   
+    
 
     public void setCity(StringProperty city) {
         this.city = city;
