@@ -9,12 +9,10 @@ import TableModel.PersonTableModel;
 import PnlView.PnlTablePerson;
 import Pojo.Persona;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,22 +28,29 @@ public class PnlTablePersonController {
     private List<Persona> personas;
     private String[] columnNames ={"Nombre","Apellido","Edad","Ocupacion"};
 
-    public PnlTablePersonController(PnlTablePerson pnlTablePerson) {
+    public PnlTablePersonController(PnlTablePerson pnlTablePerson) throws FileNotFoundException {
         this.pnlTablePerson = pnlTablePerson;
         initComponet();
     }
     
-    public void initComponet(){
+    public void initComponet() throws FileNotFoundException{
        
            
      gson= new Gson();
      
-     JsonReader jreader = new JsonReader(new BufferedReader(
-     new InputStreamReader(getClass().getResourceAsStream("/json/PersonasData.json"))));
+     personas = new ArrayList<>();
      
-     Type listType = new TypeToken<ArrayList<Persona>>(){}.getType();
+     /*JsonReader jreader = new JsonReader(new BufferedReader(
+     new InputStreamReader(getClass().getResourceAsStream("/json/PersonasData.json"))));*/
      
-     personas = gson.fromJson(jreader,listType);
+     /*Type listType = new TypeToken<ArrayList<Persona>>(){}.getType();
+     
+     personas = gson.fromJson(jreader,listType);*/
+     
+     
+     
+     
+     personas.addAll(Arrays.asList(gson.fromJson(new FileReader("src/main/Resources/json/PersonasData.json"), Persona[].class)));
      
      personTableModel = new PersonTableModel(personas,columnNames);
      pnlTablePerson.getTblPerson().setModel(personTableModel);

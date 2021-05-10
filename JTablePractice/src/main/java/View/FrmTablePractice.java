@@ -7,6 +7,9 @@ package View;
 
 import Controllers.PnlTablePersonController;
 import PnlView.PnlTablePerson;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,7 +23,7 @@ public class FrmTablePractice extends javax.swing.JFrame {
     /**
      * Creates new form FrmTablePractice
      */
-    public FrmTablePractice() {
+    public FrmTablePractice() throws FileNotFoundException {
         initComponents();
         pnlTablePerson = new PnlTablePerson();
         pnlTablePersonController = new PnlTablePersonController(pnlTablePerson);
@@ -90,7 +93,11 @@ public class FrmTablePractice extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmTablePractice().setVisible(true);
+                try {
+                    new FrmTablePractice().setVisible(true);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(FrmTablePractice.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
