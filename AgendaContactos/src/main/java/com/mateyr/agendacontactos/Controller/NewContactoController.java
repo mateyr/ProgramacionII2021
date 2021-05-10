@@ -70,6 +70,7 @@ public class NewContactoController implements Initializable {
     }
 
 
+    @FXML
     public  void btnSaveAction(ActionEvent event) {
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();

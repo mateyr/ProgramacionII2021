@@ -13,7 +13,8 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>16</version>
+            <version>15</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -23,7 +24,7 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
-            <version>16</version>
+            <version>15</version>
             <type>jar</type>
         </dependency>
     </dependencies>

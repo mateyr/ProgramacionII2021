@@ -1,6 +1,6 @@
+com\mateyr\agendacontactos\models\Contacto.class
 com\mateyr\agendacontactos\Controller\ConctactosViewController.class
 module-info.class
 com\mateyr\agendacontactos\App.class
 com\mateyr\agendacontactos\Controller\MainAppController.class
-com\mateyr\agendacontactos\models\Contacto.class
 com\mateyr\agendacontactos\Controller\NewContactoController.class
