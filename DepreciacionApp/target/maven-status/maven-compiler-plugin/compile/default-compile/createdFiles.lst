@@ -1,4 +1,5 @@
 com\mateyr\controller\pnlCalcularDepreciacionController.class
 com\mateyr\View\frmDepreciacion$1.class
 com\mateyr\View\frmDepreciacion.class
+com\mateyr\pojo\ActivoFijo.class
 com\mateyr\View\pnlCalcularDepreciacion.class

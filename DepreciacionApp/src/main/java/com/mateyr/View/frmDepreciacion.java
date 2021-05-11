@@ -18,8 +18,8 @@ public class frmDepreciacion extends javax.swing.JFrame {
        cd = new pnlCalcularDepreciacion();
       
        initComponents();
-       
-        pnlContent.add(cd);
+       this.setExtendedState(MAXIMIZED_BOTH);
+       pnlContent.add(cd);
     }
 
     /**

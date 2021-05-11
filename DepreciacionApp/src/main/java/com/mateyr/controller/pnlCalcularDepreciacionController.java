@@ -10,8 +10,10 @@ import com.mateyr.pojo.ActivoFijo;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -22,6 +24,7 @@ public class pnlCalcularDepreciacionController {
     //private ComboBoxModel<String> cmbModel;
     private DefaultTableModel tableModel;
     private List<ActivoFijo> activos;
+    int columnas = 0;
     
     public pnlCalcularDepreciacionController(pnlCalcularDepreciacion calcularDepreciacion) {
         this.calcularDepreciacion = calcularDepreciacion;
@@ -31,16 +34,14 @@ public class pnlCalcularDepreciacionController {
     private void InitComponent(){
       
       activos =  new ArrayList<>();
-        
-      tableModel = (DefaultTableModel) calcularDepreciacion.getTblActivos().getModel();
-      
+     
       calcularDepreciacion.getCmbTipoActivo().addItem("Edificio");   
       calcularDepreciacion.getCmbTipoActivo().addItem("Vehiculo");
       calcularDepreciacion.getCmbTipoActivo().addItem("Maquinaria");
       calcularDepreciacion.getCmbTipoActivo().addItem("Mobiliario");
       calcularDepreciacion.getCmbTipoActivo().addItem("Equipo de Oficina");
       
-      calcularDepreciacion.getBtnCalcular().addActionListener((e) -> {
+      calcularDepreciacion.getBtnCalcular().addActionListener((ActionEvent e) -> {
           btnCalcularActionPerformed(e);
       });
        
@@ -48,39 +49,54 @@ public class pnlCalcularDepreciacionController {
     }
     
     private void btnCalcularActionPerformed(ActionEvent evt){
+                
+        tableModel = new DefaultTableModel();
+        
         String nombre = calcularDepreciacion.getTxtNombre().getText();
         int vActivo = Integer.parseInt(calcularDepreciacion.getTxtValorActivo().getText());
         int vSalv = Integer.parseInt(calcularDepreciacion.getTxtVSalv().getText());
-        int selected = (int) calcularDepreciacion.getCmbTipoActivo().getSelectedIndex();
+        int tipo = calcularDepreciacion.getCmbTipoActivo().getSelectedIndex();
         
-        ActivoFijo act = new ActivoFijo(nombre, vActivo, vSalv,selected);
+        
+        ActivoFijo act = new ActivoFijo(nombre, vActivo, vSalv,establecerTipo(tipo));
        
         activos.add(act);
         
-        
-        
-        
-        int columnas = 0;
-        /*switch(cmbSelected){
-            case 0 :{ columnas = 20;break;}
-            case 1 :{ columnas = 5;break;}
-            case 2 :{ columnas = 8;break;}
-            case 3 :{ columnas = 2;break;}
-            case 4 :{ columnas = 1;break;}
-        }/*
+         for (int i = 0; i <activos.size(); i++) {
+            if(columnas < activos.get(i).getTipo()){
+                columnas = activos.get(i).getTipo();
+            }
+         }
+      tableModel.addColumn("Activo");
+      for (int i = 0; i < columnas; i++) {
+        tableModel.addColumn(i+1);
+          
+       } 
+     
+      tableModel.addRow(new Object[]{});
+      
+      
+      calcularDepreciacion.getTblActivos().setModel(tableModel);
+      
+      
+       /*for (int i = 0; i < calcularDepreciacion.getTblActivos().getModel().getColumnCount(); i++) {
+            
+        calcularDepreciacion.getTblActivos().setValueAt(calcularDepreciacion.getTxtNombre().getText(), 0,i);
+       }*/
        
-        for (int i = 0; i <= columnas ; i++) {
-            
-            TableColumn colum = new TableColumn();
-            colum.setHeaderValue(i);
-            calcularDepreciacion.getTblActivos().addColumn(colum);
-            
-        }
-        
-        
-        
-        
-        
         
     }
+    
+    private int establecerTipo(int est){
+        switch (est) {
+           case 0 : est = 20; break;  //Edificio
+           case 1 : est = 5; break;   //Vehiculo 
+           case 2 : est = 8; break;   //Maquinaria
+           case 3 : est = 2; break;   //Mobiliario
+           case 4 : est = 1; break;   //Equipo de Oficina
+          
+       }
+        
+      return est;
+    } 
 }
