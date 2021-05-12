@@ -10,10 +10,7 @@ import com.mateyr.pojo.ActivoFijo;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -21,7 +18,6 @@ import javax.swing.table.TableColumnModel;
  */
 public class pnlCalcularDepreciacionController {
     private  pnlCalcularDepreciacion calcularDepreciacion;
-    //private ComboBoxModel<String> cmbModel;
     private DefaultTableModel tableModel;
     private List<ActivoFijo> activos;
     int columnas = 0;
@@ -62,10 +58,10 @@ public class pnlCalcularDepreciacionController {
        
         activos.add(act);
         
-         for (int i = 0; i <activos.size(); i++) {
-            if(columnas < activos.get(i).getTipo()){
-                columnas = activos.get(i).getTipo();
-            }
+       for (int i = 0; i <activos.size(); i++) {
+         if(columnas < activos.get(i).getTipo()){
+            columnas = activos.get(i).getTipo();
+         }
          }
       tableModel.addColumn("Activo");
       for (int i = 0; i < columnas; i++) {
@@ -73,18 +69,31 @@ public class pnlCalcularDepreciacionController {
           
        } 
      
-      tableModel.addRow(new Object[]{});
-      
+        for (int i = 0; i < activos.size(); i++) {
+            tableModel.addRow(new Object[]{});
+        }   
       
       calcularDepreciacion.getTblActivos().setModel(tableModel);
       
-      
-       /*for (int i = 0; i < calcularDepreciacion.getTblActivos().getModel().getColumnCount(); i++) {
-            
-        calcularDepreciacion.getTblActivos().setValueAt(calcularDepreciacion.getTxtNombre().getText(), 0,i);
-       }*/
+       for (int i = 0; i < activos.size(); i++) {
+            calcularDepreciacion.getTblActivos().setValueAt(activos.get(i).getNombre(), i, 0);
+       }
        
+       for(int a = 0; a<activos.size();a++){
+            for (int i = 0; i < activos.get(a).getTipo(); i++) {
+            calcularDepreciacion.getTblActivos().setValueAt(DepreciationValue(activos.get(a)), a, i+1);
+        }
+       }
+
+    }
+    
+    private int DepreciationValue(ActivoFijo activo){
         
+        int depreciacion = 0;
+        
+        depreciacion = (activo.getValorActivo() - activo.getValorSalv()) / activo.getTipo();
+        
+        return depreciacion;
     }
     
     private int establecerTipo(int est){
@@ -94,9 +103,7 @@ public class pnlCalcularDepreciacionController {
            case 2 : est = 8; break;   //Maquinaria
            case 3 : est = 2; break;   //Mobiliario
            case 4 : est = 1; break;   //Equipo de Oficina
-          
-       }
-        
+       }   
       return est;
     } 
 }
