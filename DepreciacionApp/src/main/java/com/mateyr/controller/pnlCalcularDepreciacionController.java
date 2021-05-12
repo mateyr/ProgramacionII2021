@@ -74,12 +74,9 @@ public class pnlCalcularDepreciacionController {
         }   
       
       calcularDepreciacion.getTblActivos().setModel(tableModel);
-      
-       for (int i = 0; i < activos.size(); i++) {
-            calcularDepreciacion.getTblActivos().setValueAt(activos.get(i).getNombre(), i, 0);
-       }
        
        for(int a = 0; a<activos.size();a++){
+           calcularDepreciacion.getTblActivos().setValueAt(activos.get(a).getNombre(), a, 0);
             for (int i = 0; i < activos.get(a).getTipo(); i++) {
             calcularDepreciacion.getTblActivos().setValueAt(DepreciationValue(activos.get(a)), a, i+1);
         }
